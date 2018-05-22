@@ -1,2 +1,18 @@
+<app-header></app-header>
+<div class="row">
+    <div class="col-1">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="col-11">
 <h1>{{title}}</h1>
-<app-accountants></app-accountants>
+<nav>   <!--Users shouldn't have to paste a route URL into the address bar. They should be able to click a link to navigate.-->
+    <a routerLink="/dashboard">Dashboard</a>
+    <a routerLink="/accountants">Accountants</a>
+</nav>
+<router-outlet></router-outlet>    <!--The <router-outlet> tells the router where to display routed views.-->
+    <app-messages></app-messages>
+</div>
+</div>
+
+
+

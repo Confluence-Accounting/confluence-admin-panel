@@ -1,0 +1,32 @@
+
+#top {
+    background-color: #e4e4e4;
+    }
+    #balk {
+    background-color: #e5e5e5;
+    color: #ffffff;
+    }
+    img {
+        width: 100%;
+        height: auto;
+    }
+    .col-1 {
+        padding-bottom: 100%;
+        margin-bottom: -100%;
+    }	
+    
+    a.deco-none {
+        color:#000000 !important;
+        text-decoration:none;
+    }
+    ul {
+        list-style-type: none;
+            padding: 5px;
+    }
+    a {
+        color: #ffffff;     
+        text-decoration:none;
+    }	
+        
+        
+        

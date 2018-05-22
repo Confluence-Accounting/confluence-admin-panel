@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Accountant } from '../accountant';
-import { ACCOUNTANTS } from '../mock-accountants';
+import { AccountantService } from '../accountant.service';
+
  
 @Component({
   selector: 'app-accountants',
@@ -8,15 +9,28 @@ import { ACCOUNTANTS } from '../mock-accountants';
   styleUrls: ['./accountants.component.css']
 })
 export class AccountantsComponent implements OnInit {
- accountants = ACCOUNTANTS;
+  accountants: Accountant[];
  
-  selectedAccountant: Accountant;
- 
- 
-  constructor() { }
- 
-  ngOnInit() {
-  }
- 
-}
+  constructor(private accountantService: AccountantService) { }
 
+  ngOnInit() {
+    this.getAccountants();
+  }
+
+
+
+  getAccountants(): void {
+    this.accountantService.getAccountants()
+     .subscribe(accountants => this.accountants = accountants); 
+  }
+  add(name: string): void {
+    name = name.trim();
+    if (!name) { return; }
+    this.accountantService.addAccountant({ name } as Accountant)
+      .subscribe(accountant => {
+        this.accountants.push(accountant);
+      });
+  }
+
+
+}

@@ -1,21 +1,33 @@
 
 <h2>My Accountants</h2>
-<ul class="accountants">
-  <li *ngFor="let accountant of accountants"
-    [class.selected]="accountant === selectedAccountant"
-    (click)="onSelect(accountant)">
-    <span class="badge">{{accountant.id}}</span> {{accountant.name}}
-  </li>
-</ul>
- 
-<div *ngIf="selectedAccountant">
- 
-  <h2>{{ selectedAccountant.name | uppercase }} Details</h2>
-  <div><span>id: </span>{{selectedAccountant.id}}</div>
-  <div>
-    <label>name:
-      <input [(ngModel)]="selectedAccountant.name" placeholder="name">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Naam</th>
+      <th scope="col">#Transacties</th>
+      <th scope="col">VAT</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let accountant of accountants">
+      <td>{{accountant.id}}</td>
+      <td><a routerLink="/detail/{{accountant.id}}">{{accountant.name}}</a></td>
+      <td>5</td>
+      <td>{{accountant.vat}}</td>
+      <td>Delete</td>
+    </tr>
+  </tbody>
+</table>
+<div>
+    <label>Accountant name:
+      <input #accountantName />
     </label>
+    <!-- (click) passes input value to add() and then clears the input -->
+    <button (click)="add(accountantName.value); accountantName.value=''">
+      add
+    </button>
   </div>
- 
-</div>
+
+
