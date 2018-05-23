@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Accountant } from '../accountant';
 import { AccountantService } from '../accountant.service';
+import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
+import { NgForm } from '@angular/forms';
 
  
 @Component({
@@ -17,20 +19,18 @@ export class AccountantsComponent implements OnInit {
     this.getAccountants();
   }
 
-
-
   getAccountants(): void {
     this.accountantService.getAccountants()
      .subscribe(accountants => this.accountants = accountants); 
   }
-  add(name: string): void {
-    name = name.trim();
-    if (!name) { return; }
-    this.accountantService.addAccountant({ name } as Accountant)
+  onSubmit(accountant): void {
+    
+    this.accountantService.addAccountant(accountant as Accountant)
       .subscribe(accountant => {
         this.accountants.push(accountant);
       });
   }
+  
 
 
 }

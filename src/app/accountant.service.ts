@@ -16,6 +16,8 @@ const httpOptions = {
 export class AccountantService {
 
   private accountantsUrl = 'http://localhost/conf-admin-server/public/api/accountant';  // URL to web api
+  private accountantsputUrl = 'http://localhost/conf-admin-server/public/api/accountant/{accountant}';  // URL to web api
+
 
   constructor(
     private http: HttpClient,
@@ -23,22 +25,21 @@ export class AccountantService {
 
   // GET accountants from the server 
   getAccountants (): Observable<Accountant[]> {
-  return this.http.get<Accountant[]>(this.accountantsUrl)
+    return this.http.get<Accountant[]>(this.accountantsUrl)
   
   }
   //GET accountant bij id,. Will 404 if id not found 
   getAccountant(id: number): Observable<Accountant> {
     const url = `${this.accountantsUrl}/${id}`;
     return this.http.get<Accountant>(url)
- 
   }
   /** PUT: update the accountant on the server */
-updateAccountant (accountant: Accountant): Observable<any> {
-  return this.http.put(this.accountantsUrl, accountant, httpOptions)
+  updateAccountant (accountant: Accountant): Observable<any> {
+    return this.http.put(this.accountantsputUrl, accountant, httpOptions)
 }
-/** POST: add a new hero to the server */
-addAccountant (accountant: Accountant): Observable<Accountant> {
-  return this.http.post<Accountant>(this.accountantsUrl, accountant, httpOptions)
+/** POST: add a new accountant to the server */
+  addAccountant (accountant: Accountant): Observable<Accountant> {
+    return this.http.post<Accountant>(this.accountantsUrl, accountant, httpOptions)
 }
 
   /** Log a AccountantService message with the MessageService */

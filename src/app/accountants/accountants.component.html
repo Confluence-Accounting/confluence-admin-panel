@@ -21,13 +21,23 @@
   </tbody>
 </table>
 <div>
-    <label>Accountant name:
-      <input #accountantName />
-    </label>
+    <form #form="ngForm" (ngSubmit)="onSubmit(form.value)">
+        <label>name:</label>
+        <input type="text"
+        placeholder="Enter a name"
+        [(ngModel)]="name"
+            />
+        
+        <label>vat: </label>
+        <input type="text"
+        placeholder="Enter a VAT number"
+        [(ngModel)]="vat"
+        />
+
     <!-- (click) passes input value to add() and then clears the input -->
-    <button (click)="add(accountantName.value); accountantName.value=''">
-      add
-    </button>
-  </div>
+    <button type="Submit">Save</button>
+
+  </form>
+</div>
 
 
